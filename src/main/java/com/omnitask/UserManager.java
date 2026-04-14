@@ -13,18 +13,19 @@ import org.mindrot.jbcrypt.BCrypt;
  */
 public class UserManager {
 
-    private static final String FILE = "Users.txt";
+    private static final String FILE1 = "tasks_";
+    private static final String FILE2 =   ".txt";
 
     private static boolean isValidUsername(String username) {
         return username.matches("[a-zA-Z0-9_]+");
     }
 
     private static boolean isUserExists(String username) throws IOException {
-        File file = new File(FILE);
+        File file = new File(FILE1+username+FILE2);
         if (!file.exists()) {
             return false;
         }
-        try (BufferedReader buffer = new BufferedReader(new FileReader(FILE));) {
+        try (BufferedReader buffer = new BufferedReader(new FileReader(FILE1+username+FILE2));) {
             String partition;
             while ((partition = buffer.readLine()) != null) {
                 String[] part = partition.split("\\|");
@@ -39,12 +40,12 @@ public class UserManager {
     }
 
     private static boolean checkLoginCredentials(String username, String password) throws IOException {
-        File f = new File(FILE);
+        File f = new File(FILE1+username+FILE2);
         if (!f.exists()) {
             System.out.println("File not exists.");
             return false;
         }
-        try (BufferedReader buffer = new BufferedReader(new FileReader(FILE))) {
+        try (BufferedReader buffer = new BufferedReader(new FileReader(FILE1+username+FILE2))) {
             String stage;
             while ((stage = buffer.readLine()) != null) {
                 String[] parts = stage.split("\\|");
@@ -57,7 +58,7 @@ public class UserManager {
     }
 
     private static boolean register(String username, String password) throws IOException {
-        File file = new File(FILE);
+        File file = new File(FILE1+username+FILE2);
         if (!isValidUsername(username)) {
             return false;
         }
@@ -68,7 +69,7 @@ public class UserManager {
 
         String passhashed = BCrypt.hashpw(password, BCrypt.gensalt());
 
-        try (PrintWriter w = new PrintWriter(new FileWriter(FILE, true))) {
+        try (PrintWriter w = new PrintWriter(new FileWriter(FILE1+username+FILE2, true))) {
             w.println(username + "|" + passhashed);
         }
         return true;
