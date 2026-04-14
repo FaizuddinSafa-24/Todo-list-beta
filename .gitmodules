@@ -1,0 +1,6 @@
+[submodule "Todo-list-simple"]
+	path = Todo-list-simple
+	url = https://github.com/FaizuddinSafa-24/OmniFocus-Simple.git
+[submodule "todo-list-beta"]
+	path = todo-list-beta
+	url = https://github.com/FaizuddinSafa-24/Todo-list-beta.git
