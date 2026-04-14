@@ -1,4 +1,5 @@
 com/omnitask/UserManager.class
+com/omnitask/TaskManager.class
 com/omnitask/PrimaryController.class
 com/omnitask/SecondaryController.class
 module-info.class
