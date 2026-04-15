@@ -4,3 +4,4 @@ com/omnitask/PrimaryController.class
 com/omnitask/SecondaryController.class
 module-info.class
 com/omnitask/App.class
+com/omnitask/LoginController.class

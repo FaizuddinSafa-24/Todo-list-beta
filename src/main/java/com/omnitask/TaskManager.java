@@ -38,7 +38,7 @@ public class TaskManager {
             return false;
         }
         try (PrintWriter write = new PrintWriter(new FileWriter(getTaskFile(username), true))) {
-            write.println(title + "|" + priority + "|" + dueDate + "|" + "|false");
+            write.println(title + "|" + priority + "|" + dueDate + "|" + "false");
         }
         return true;
     }

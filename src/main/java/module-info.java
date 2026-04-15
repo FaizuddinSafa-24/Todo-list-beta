@@ -5,4 +5,5 @@ module com.omnitask {
     opens com.omnitask to javafx.fxml;
     exports com.omnitask;
     requires jbcrypt;
+    requires java.base;
 }
