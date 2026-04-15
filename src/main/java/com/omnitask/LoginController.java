@@ -4,10 +4,12 @@
  */
 package com.omnitask;
 
+import java.io.IOException;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.input.KeyEvent;
 
 
 
@@ -18,10 +20,13 @@ import javafx.scene.input.KeyEvent;
  */
 public class LoginController {
 
+    UserManager u = new UserManager();
     @FXML
     private TextField username;
     @FXML
     private PasswordField pass;
+    @FXML
+    private Button login;        
     String name;
     String password;
     
@@ -29,7 +34,14 @@ public class LoginController {
     // they will hash the pass and store them in file
     // to do this, i need to getText of what typed here
     
-    public void setUsername(KeyEvent e) {
-        name = e.getText();
+    public void login(ActionEvent e) throws IOException {
+        
+        name = username.getText();
+        password = pass.getText();
+        if(UserManager.checkLoginCredentials(name, password)) {
+            System.out.println("Login works");
+        } else {
+            throw new IOException("Not found");
+        }
     }
 }
