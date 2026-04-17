@@ -17,6 +17,11 @@ public class App extends Application {
 //
     private static Scene scene;
 
+    /**
+     *
+     * @param stage
+     * @throws IOException
+     */
     @Override
     public void start(Stage stage) throws IOException {
         Parent root =FXMLLoader.load(getClass().getResource("/fxml/Login.fxml"));
@@ -36,14 +41,21 @@ public class App extends Application {
 //        return fxmlLoader.load();
 //    }
 
+    /**
+     *
+     * @param args
+     * @throws IOException
+     */
+
     public static void main(String[] args) throws IOException {
         
         launch(args);
-        TaskManager.addTask("Safa", "WowQuizCancelled", "Quiz cancellation notice makes everyone to enjpy the week, though finals are two weeks later, we get 2 days PL.):", "15-04-2026");
-        List<String[]> tasks = TaskManager.loadTask("Safa");
-        for (String[] t : tasks) {
-            System.out.println(t[0]+ "|"+t[1]+"|"+ t[2]+ "|"+t[3]);
-        }
+//        TaskManager.addTask("Safa", "WowQuizCancelled", "Quiz cancellation notice makes everyone to enjpy the week, though finals are two weeks later, we get 2 days PL.):", "15-04-2026");
+//        List<String[]> tasks = TaskManager.loadTask("Safa");
+//        for (String[] t : tasks) {
+//            System.out.println(t[0]+ "|"+t[1]+"|"+ t[2]+ "|"+t[3]);
+//        }
+// this was a test program, now it's commented.
     }
 
 }

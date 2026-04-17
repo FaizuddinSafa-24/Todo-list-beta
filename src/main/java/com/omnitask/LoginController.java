@@ -42,6 +42,12 @@ public class LoginController {
     // to do this, i need to getText of what typed here
     //after storing, pass the values to usermanager.checklogin() methd and return bool
     // depending on bool value, y -> taskview.fxml open, n-> show alert message and add a methd called "showAndWait().get() == ButtonType.OK
+
+    /**
+     *
+     * @param e
+     * @throws IOException
+     */
     public void login(ActionEvent e) throws IOException {
 
         name = signin.getText();

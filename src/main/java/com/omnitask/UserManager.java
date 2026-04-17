@@ -17,10 +17,21 @@ public class UserManager {
     private static final String FILE1 = "tasks_";
     private static final String FILE2 = ".txt";
 
+    /**
+     *
+     * @param username
+     * @return
+     */
     public static boolean isValidUsername(String username) {
         return username.matches("[a-zA-Z0-9_]+");
     }
 
+    /**
+     *
+     * @param username
+     * @return
+     * @throws IOException
+     */
     public static boolean isUserExists(String username) throws IOException {
         File file = new File(dir + FILE1 + username + FILE2);
         if (!file.exists()) {
@@ -40,6 +51,13 @@ public class UserManager {
 
     }
 
+    /**
+     *
+     * @param username
+     * @param password
+     * @return
+     * @throws IOException
+     */
     public static boolean checkLoginCredentials(String username, String password) throws IOException {
         File f = new File(FILE1 + username + FILE2);
         if (!f.exists()) {
@@ -58,6 +76,13 @@ public class UserManager {
         return false;
     }
 
+    /**
+     *
+     * @param username
+     * @param password
+     * @return
+     * @throws IOException
+     */
     public static boolean register(String username, String password) throws IOException {
         File file = new File(dir + FILE1 + username + FILE2);
         if (!isValidUsername(username)) {
