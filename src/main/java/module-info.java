@@ -1,9 +1,8 @@
 module com.omnitask {
-    requires javafx.controls;
+    requires transitive javafx.controls;
     requires javafx.fxml;
+    requires jbcrypt;
 
     opens com.omnitask to javafx.fxml;
     exports com.omnitask;
-    requires jbcrypt;
-    requires java.base;
 }
