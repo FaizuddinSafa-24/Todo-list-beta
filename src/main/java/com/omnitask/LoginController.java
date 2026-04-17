@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
- */
 package com.omnitask;
 
 import java.io.IOException;
@@ -10,63 +6,60 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-
-
-import javafx.scene.control.Button;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 
-
-/**
- * FXML Controller class
- *
- * @author safa
- */
 public class LoginController {
 
-    @FXML
-    private TextField signin;
-    @FXML
-    private PasswordField pass;
-    @FXML
-    private Button login;
-    String name;
-    String password;
-    private Stage stage;
-    private Scene scene;
-    private Parent root;
+    @FXML private TextField signin;
+    @FXML private PasswordField pass;
 
-    // pass username and password to UserManager
-    // they will hash the pass and store them in file
-    // to do this, i need to getText of what typed here
-    //after storing, pass the values to usermanager.checklogin() methd and return bool
-    // depending on bool value, y -> taskview.fxml open, n-> show alert message and add a methd called "showAndWait().get() == ButtonType.OK
-
-    /**
-     *
-     * @param e
-     * @throws IOException
-     */
+    @FXML
     public void login(ActionEvent e) throws IOException {
+        String username = signin.getText().trim();
+        String password = pass.getText();
 
-        name = signin.getText();
-        password = pass.getText();
-        boolean checkID = UserManager.checkLoginCredentials(name, password);
-        if (checkID) {
-            FXMLLoader loader = FXMLLoader.load(getClass().getResource("TaskView.fxml"));
-            root = loader.load();
-            scene = new Scene(root); 
-            //scene = new Scene(loadFXML("Login"));
-            stage.setScene(scene);
+        if (username.isEmpty() || password.isEmpty()) {
+            showAlert("Error", "Username and password cannot be empty.");
+            return;
+        }
+
+        boolean ok = UserManager.checkLoginCredentials(username, password);
+        if (ok) {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/TaskView.fxml"));
+            Parent root = loader.load();
+            TaskViewController ctrl = loader.getController();
+            ctrl.setUsername(username);
+            Stage stage = (Stage) signin.getScene().getWindow();
+            stage.setScene(new Scene(root));
             stage.show();
         } else {
-            FXMLLoader loader = FXMLLoader.load(getClass().getResource("Register.fxml"));
-            root = loader.load();
-            scene = new Scene(root);
-            //scene = new Scene(loadFXML("Login"));
-            stage.setScene(scene);
-            stage.show();
+            showAlert("Login Failed", "Invalid username or password.");
         }
+    }
+
+    @FXML
+    public void goForgotPassword(ActionEvent e) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/ForgotPassword.fxml"));
+        Parent root = loader.load();
+        Stage stage = (Stage) signin.getScene().getWindow();
+        stage.setScene(new Scene(root));
+        stage.show();
+    }
+
+    @FXML
+    public void goRegister(ActionEvent e) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Register.fxml"));
+        Parent root = loader.load();
+        Stage stage = (Stage) signin.getScene().getWindow();
+        stage.setScene(new Scene(root));
+        stage.show();
+    }
+
+    private void showAlert(String title, String msg) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle(title);
+        alert.setContentText(msg);
+        alert.showAndWait();
     }
 }
