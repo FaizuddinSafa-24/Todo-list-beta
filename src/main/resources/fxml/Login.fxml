@@ -1,29 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.PasswordField?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" nodeOrientation="LEFT_TO_RIGHT" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.omnitask.LoginController">
-    <!---stylesheets>
-        <URL value="/styles/login.css" />
-    </stylesheets -->
-   <children>
-      <Label alignment="CENTER" layoutX="268.0" layoutY="105.0" text="Sign In" textAlignment="CENTER">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
-      <TextField fx:id="signin" layoutX="227.0" layoutY="157.0" onAction="#login" promptText="Curly_FX50">
-         <font>
-            <Font name="System Bold" size="14.0" />
-         </font></TextField>
-      <Label layoutX="140.0" layoutY="159.0" text="Username:" />
-      <Label layoutX="143.0" layoutY="189.0" text="Password:" />
-      <PasswordField fx:id="pass" layoutX="225.0" layoutY="188.0" onAction="#login" promptText="****" />
-      <Button fx:id="login" layoutX="270.0" layoutY="257.0" mnemonicParsing="false" text="Sign in" />
-   </children>
-</AnchorPane>
+<VBox alignment="CENTER" spacing="12" xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.omnitask.LoginController"
+      prefWidth="360" prefHeight="400">
+
+    <Label text="OmniTask Login" style="-fx-font-size:22;-fx-font-weight:bold;"/>
+
+    <Label text="Username"/>
+    <TextField fx:id="signin" promptText="Enter username"/>
+
+    <Label text="Password"/>
+    <PasswordField fx:id="pass" promptText="Enter password"/>
+
+    <Button text="Login" onAction="#login" prefWidth="200"/>
+
+    <Hyperlink text="Forgot Password?" onAction="#goForgotPassword"/>
+
+    <HBox alignment="CENTER" spacing="6">
+        <Label text="New here?"/>
+        <Hyperlink text="Register" onAction="#goRegister"/>
+    </HBox>
+
+</VBox>

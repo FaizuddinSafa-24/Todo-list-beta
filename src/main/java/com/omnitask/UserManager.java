@@ -15,7 +15,7 @@ public class UserManager {
     }
 
     public static boolean isValidUsername(String username) {
-        return username != null && username.matches("[a-zA-Z0-9_]+");
+        return username != null && username.matches("[a-zA-Z0-9_ ]+");
     }
 
     public static boolean isUserExists(String username) throws IOException {

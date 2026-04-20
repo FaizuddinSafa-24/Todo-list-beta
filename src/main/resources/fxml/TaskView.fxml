@@ -1,75 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.net.URL?>
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextArea?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.omnitask.TaskViewController">
-    <!--stylesheets>
-        <URL value="/styles/taskview.css" />
-    </stylesheets-->
-   <children>
-      <BorderPane layoutY="-1.0" prefHeight="400.0" prefWidth="603.0">
-         <right>
-            <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0" BorderPane.alignment="CENTER">
-               <children>
-                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="92.0" text="Save Task" />
-                  <Button alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="26.0" prefWidth="92.0" text="Delete Task" />
-                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="92.0" text="Logout" />
-               </children>
-               <BorderPane.margin>
-                  <Insets />
-               </BorderPane.margin>
-            </VBox>
-         </right>
-         <left>
-            <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
-               <children>
-                  <Label alignment="CENTER" prefHeight="18.0" prefWidth="101.0" text="Tasks List" textAlignment="CENTER" />
-               </children></VBox>
-         </left>
-         <center>
-            <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
-               <children>
-                  <HBox nodeOrientation="RIGHT_TO_LEFT" prefHeight="31.0" prefWidth="403.0">
-                     <children>
-                        <TextField alignment="CENTER_RIGHT" nodeOrientation="LEFT_TO_RIGHT" prefHeight="26.0" prefWidth="566.0" />
-                        <Label nodeOrientation="LEFT_TO_RIGHT" prefHeight="18.0" prefWidth="244.0" text="Title" textAlignment="CENTER" />
-                     </children>
-                  </HBox>
-                  <TextArea prefHeight="259.0" prefWidth="403.0" promptText="Write your Task">
-                     <font>
-                        <Font name="SansSerif Regular" size="13.0" />
-                     </font>
-                  </TextArea>
-               </children>
-            </VBox>
-         </center>
-         <top>
-            <HBox prefHeight="61.0" prefWidth="603.0" BorderPane.alignment="CENTER">
-               <children>
-                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="108.0" prefWidth="683.0" text="OmniTask" textAlignment="CENTER">
-                     <font>
-                        <Font size="36.0" />
-                     </font>
-                  </Label>
-               </children></HBox>
-         </top>
-         <bottom>
-            <HBox prefHeight="52.0" prefWidth="603.0" BorderPane.alignment="CENTER">
-               <children>
-                  <Label nodeOrientation="LEFT_TO_RIGHT" prefHeight="18.0" prefWidth="71.0" text="Username:" textAlignment="CENTER" />
-               </children>
-            </HBox>
-         </bottom>
-      </BorderPane>
-   </children>
-</AnchorPane>
+<BorderPane xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.omnitask.TaskViewController"
+            prefWidth="800" prefHeight="550">
+
+    <!-- LEFT: Task list -->
+    <left>
+        <VBox spacing="8" style="-fx-padding:10;" prefWidth="200">
+            <Label text="My Tasks" style="-fx-font-size:16;-fx-font-weight:bold;"/>
+            <ListView fx:id="taskListView" prefHeight="450" onMouseClicked="#onTaskSelected"/>
+        </VBox>
+    </left>
+
+    <!-- CENTER: Title + Text area -->
+    <center>
+        <VBox spacing="10" style="-fx-padding:15;" prefWidth="360">
+            <Label text="Task Title"/>
+            <TextField fx:id="titleField" promptText="Enter task title..."/>
+            <Label text="Task Details"/>
+            <TextArea fx:id="textArea" promptText="Enter task details..." prefHeight="300" wrapText="true"/>
+        </VBox>
+    </center>
+
+    <!-- RIGHT: Buttons -->
+    <right>
+        <VBox spacing="12" style="-fx-padding:15;" prefWidth="160" alignment="TOP_CENTER">
+            <Button text="Save Task" onAction="#saveTask" prefWidth="140"/>
+            <Button text="Delete Task" onAction="#deleteTask" prefWidth="140"/>
+            <Button text="Logout" onAction="#logout" prefWidth="140"/>
+        </VBox>
+    </right>
+
+    <!-- BOTTOM: Username + Clock -->
+    <bottom>
+        <HBox spacing="20" style="-fx-padding:8;-fx-border-color:#cccccc;-fx-border-width:1 0 0 0;">
+            <Label fx:id="usernameLabel" text="User: "/>
+            <Label fx:id="clockLabel" text="00:00:00"/>
+        </HBox>
+    </bottom>
+
+</BorderPane>
