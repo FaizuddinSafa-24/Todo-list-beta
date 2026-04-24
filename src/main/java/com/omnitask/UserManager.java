@@ -5,9 +5,7 @@ import org.mindrot.jbcrypt.BCrypt;
 
 public class UserManager {
 
-    private static final String DIR = "Login/";
-    private static final String PREFIX = "tasks_";
-    private static final String EXT = ".txt";
+    private static final String DIR = "Login/", PREFIX = "tasks_",  EXT = ".txt";
 
     // File format per line: username|hashedPassword|passHint|favAnswer
     private static String getFile(String username) {
