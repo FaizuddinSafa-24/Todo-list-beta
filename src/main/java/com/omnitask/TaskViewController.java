@@ -19,6 +19,10 @@ import javafx.scene.control.*;
 import javafx.util.Duration;
 import javafx.stage.Stage;
 
+/**
+ *
+ * @author safa
+ */
 public class TaskViewController implements Initializable {
 
     @FXML
@@ -37,12 +41,22 @@ public class TaskViewController implements Initializable {
     private int selectedIndex = -1;
 
     // Called by LoginController right after load()
+
+    /**
+     *
+     * @param username
+     */
     public void setUsername(String username) {
         this.username = username;
         usernameLabel.setText("User: " + username);
         loadTaskList();
     }
 
+    /**
+     *
+     * @param url
+     * @param rb
+     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         startClock();
@@ -71,7 +85,9 @@ public class TaskViewController implements Initializable {
         }
     }
 
-    
+    /**
+     *
+     */
     public void onTaskSelected() {
         selectedIndex = taskListView.getSelectionModel().getSelectedIndex();
         if (selectedIndex >= 0 && tasks != null && selectedIndex < tasks.size()) {
@@ -81,7 +97,10 @@ public class TaskViewController implements Initializable {
         }
     }
 
-    
+    /**
+     *
+     * @param e
+     */
     public void saveTask(ActionEvent e) {
         String title = titleField.getText().trim();
         String text = textArea.getText().trim();
@@ -100,7 +119,10 @@ public class TaskViewController implements Initializable {
         }
     }
 
-
+    /**
+     *
+     * @param e
+     */
     public void deleteTask(ActionEvent e) {
         if (selectedIndex < 0) {
             showAlert("Error", "Select a task to delete.");
@@ -117,7 +139,11 @@ public class TaskViewController implements Initializable {
         }
     }
 
-    
+    /**
+     *
+     * @param e
+     * @throws IOException
+     */
     public void logout(ActionEvent e) throws IOException {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Logout");

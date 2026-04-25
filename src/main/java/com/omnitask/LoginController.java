@@ -9,6 +9,10 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 
+/**
+ *
+ * @author safa
+ */
 public class LoginController {
 
     @FXML
@@ -17,6 +21,11 @@ public class LoginController {
     private PasswordField pass;
     //must add private Scene scene for removing redundancy
     
+    /**
+     *
+     * @param e
+     * @throws IOException
+     */
     public void login(ActionEvent e) throws IOException {
         String username = signin.getText().trim();
         String password = pass.getText();
@@ -40,7 +49,11 @@ public class LoginController {
         }
     }
 
-    
+    /**
+     *
+     * @param e
+     * @throws IOException
+     */
     public void goForgotPassword(ActionEvent e) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/ForgotPassword.fxml"));
         Parent root = loader.load();
@@ -49,7 +62,11 @@ public class LoginController {
         stage.show();
     }
 
-    
+    /**
+     *
+     * @param e
+     * @throws IOException
+     */
     public void goRegister(ActionEvent e) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Register.fxml"));
         Parent root = loader.load();

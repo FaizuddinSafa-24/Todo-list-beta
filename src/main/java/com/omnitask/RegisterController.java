@@ -13,6 +13,10 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 
+/**
+ *
+ * @author safa
+ */
 public class RegisterController implements Initializable {
 
     @FXML 
@@ -35,13 +39,22 @@ public class RegisterController implements Initializable {
         "What is your mother's maiden name?"
     };
 
+    /**
+     *
+     * @param url
+     * @param rb
+     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         hintList.setItems(FXCollections.observableArrayList(HINTS));
         hintList.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
     }
 
-    
+    /**
+     *
+     * @param e
+     * @throws IOException
+     */
     public void register(ActionEvent e) throws IOException {
         String username = usernameField.getText().trim();
         String password = passwordField.getText();
@@ -74,7 +87,11 @@ public class RegisterController implements Initializable {
         }
     }
 
-    
+    /**
+     *
+     * @param e
+     * @throws IOException
+     */
     public void goLogin(ActionEvent e) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Login.fxml"));
         Parent root = loader.load();

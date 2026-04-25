@@ -1,7 +1,6 @@
 **/target/**
 target/**
-**/Login/**
-Login/**
+Login/
 .settings/
 .classpath
 .project

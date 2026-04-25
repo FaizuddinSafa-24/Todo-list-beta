@@ -3,6 +3,10 @@ package com.omnitask;
 import java.io.*;
 import org.mindrot.jbcrypt.BCrypt;
 
+/**
+ *
+ * @author safa
+ */
 public class UserManager {
 
     private static final String DIR = "Login/", PREFIX = "users_",  EXT = ".txt";
@@ -12,15 +16,33 @@ public class UserManager {
         return DIR + PREFIX + username + EXT;
     }
 
+    /**
+     *
+     * @param username
+     * @return
+     */
     public static boolean isValidUsername(String username) {
         return username != null && username.matches("[a-zA-Z0-9_ ]+");
     }
 
+    /**
+     *
+     * @param username
+     * @return
+     * @throws IOException
+     */
     public static boolean isUserExists(String username) throws IOException {
         File f = new File(getFile(username));
         return f.exists();
     }
 
+    /**
+     *
+     * @param username
+     * @param password
+     * @return
+     * @throws IOException
+     */
     public static boolean checkLoginCredentials(String username, String password) throws IOException {
         File f = new File(getFile(username));
         if (!f.exists()) return false;
@@ -34,6 +56,16 @@ public class UserManager {
     }
 
     // Register: stores username|hashedPass|passHint|favAnswer
+
+    /**
+     *
+     * @param username
+     * @param password
+     * @param passHint
+     * @param favAnswer
+     * @return
+     * @throws IOException
+     */
     public static boolean register(String username, String password, String passHint, String favAnswer) throws IOException {
         if (!isValidUsername(username)) return false;
         if (isUserExists(username)) return false;
@@ -49,6 +81,13 @@ public class UserManager {
     }
 
     // Returns passHint string for the user, null if not found
+
+    /**
+     *
+     * @param username
+     * @return
+     * @throws IOException
+     */
     public static String getPassHint(String username) throws IOException {
         File f = new File(getFile(username));
         if (!f.exists()) return null;
@@ -61,6 +100,13 @@ public class UserManager {
     }
 
     // Returns favAnswer for verification, null if not found
+
+    /**
+     *
+     * @param username
+     * @return
+     * @throws IOException
+     */
     public static String getFavAnswer(String username) throws IOException {
         File f = new File(getFile(username));
         if (!f.exists()) return null;
@@ -73,6 +119,14 @@ public class UserManager {
     }
 
     // Resets password: rewrites file with new hashed password
+
+    /**
+     *
+     * @param username
+     * @param newPassword
+     * @return
+     * @throws IOException
+     */
     public static boolean resetPassword(String username, String newPassword) throws IOException {
         File f = new File(getFile(username));
         if (!f.exists()) return false;

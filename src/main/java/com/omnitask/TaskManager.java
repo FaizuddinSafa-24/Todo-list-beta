@@ -3,6 +3,10 @@ package com.omnitask;
 import java.io.*;
 import java.util.*;
 
+/**
+ *
+ * @author safa
+ */
 public class TaskManager {
 
     private static final String DIR = "Tasks/";
@@ -19,6 +23,16 @@ public class TaskManager {
     }
 
     // Format: title|text|dueDate|done
+
+    /**
+     *
+     * @param username
+     * @param title
+     * @param text
+     * @param dueDate
+     * @return
+     * @throws IOException
+     */
     public static boolean addTask(String username, String title, String text, String dueDate) throws IOException {
         if (title == null || title.isBlank()) {
             return false;
@@ -30,6 +44,12 @@ public class TaskManager {
         return true;
     }
 
+    /**
+     *
+     * @param username
+     * @return
+     * @throws IOException
+     */
     public static List<String[]> loadTask(String username) throws IOException {
         List<String[]> tasks = new ArrayList<>();
         File f = new File(getTaskFile(username));
@@ -70,6 +90,12 @@ public class TaskManager {
         }
     }
 
+    /**
+     *
+     * @param username
+     * @param index
+     * @throws IOException
+     */
     public static void markDone(String username, int index) throws IOException {
         List<String[]> tasks = loadTask(username);
         if (index >= 0 && index < tasks.size()) {
