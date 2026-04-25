@@ -21,11 +21,16 @@ import javafx.stage.Stage;
 
 public class TaskViewController implements Initializable {
 
-    @FXML private ListView<String> taskListView;
-    @FXML private TextField titleField;
-    @FXML private TextArea textArea;
-    @FXML private Label usernameLabel;
-    @FXML private Label clockLabel;
+    @FXML
+    private ListView<String> taskListView;
+    @FXML
+    private TextField titleField;
+    @FXML
+    private TextArea textArea;
+    @FXML
+    private Label usernameLabel;
+    @FXML
+    private Label clockLabel;
 
     private String username;
     private List<String[]> tasks;
@@ -66,7 +71,7 @@ public class TaskViewController implements Initializable {
         }
     }
 
-    @FXML
+    
     public void onTaskSelected() {
         selectedIndex = taskListView.getSelectionModel().getSelectedIndex();
         if (selectedIndex >= 0 && tasks != null && selectedIndex < tasks.size()) {
@@ -76,7 +81,7 @@ public class TaskViewController implements Initializable {
         }
     }
 
-    @FXML
+    
     public void saveTask(ActionEvent e) {
         String title = titleField.getText().trim();
         String text = textArea.getText().trim();
@@ -95,7 +100,7 @@ public class TaskViewController implements Initializable {
         }
     }
 
-    @FXML
+
     public void deleteTask(ActionEvent e) {
         if (selectedIndex < 0) {
             showAlert("Error", "Select a task to delete.");
@@ -112,7 +117,7 @@ public class TaskViewController implements Initializable {
         }
     }
 
-    @FXML
+    
     public void logout(ActionEvent e) throws IOException {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Logout");

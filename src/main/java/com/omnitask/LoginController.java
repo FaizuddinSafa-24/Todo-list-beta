@@ -11,10 +11,12 @@ import javafx.stage.Stage;
 
 public class LoginController {
 
-    @FXML private TextField signin;
-    @FXML private PasswordField pass;
-
     @FXML
+    private TextField signin;
+    @FXML
+    private PasswordField pass;
+    //must add private Scene scene for removing redundancy
+    
     public void login(ActionEvent e) throws IOException {
         String username = signin.getText().trim();
         String password = pass.getText();
@@ -31,28 +33,28 @@ public class LoginController {
             TaskViewController ctrl = loader.getController();
             ctrl.setUsername(username);
             Stage stage = (Stage) signin.getScene().getWindow();
-            stage.setScene(new Scene(root));
+            stage.setScene(new Scene(root));    // scene obj can be used
             stage.show();
         } else {
             showAlert("Login Failed", "Invalid username or password.");
         }
     }
 
-    @FXML
+    
     public void goForgotPassword(ActionEvent e) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/ForgotPassword.fxml"));
         Parent root = loader.load();
         Stage stage = (Stage) signin.getScene().getWindow();
-        stage.setScene(new Scene(root));
+        stage.setScene(new Scene(root));    // scene obj can be used
         stage.show();
     }
 
-    @FXML
+    
     public void goRegister(ActionEvent e) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Register.fxml"));
         Parent root = loader.load();
         Stage stage = (Stage) signin.getScene().getWindow();
-        stage.setScene(new Scene(root));
+        stage.setScene(new Scene(root));    // scene obj can be used
         stage.show();
     }
 

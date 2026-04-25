@@ -5,7 +5,7 @@ import org.mindrot.jbcrypt.BCrypt;
 
 public class UserManager {
 
-    private static final String DIR = "Login/", PREFIX = "tasks_",  EXT = ".txt";
+    private static final String DIR = "Login/", PREFIX = "users_",  EXT = ".txt";
 
     // File format per line: username|hashedPassword|passHint|favAnswer
     private static String getFile(String username) {
@@ -38,7 +38,7 @@ public class UserManager {
         if (!isValidUsername(username)) return false;
         if (isUserExists(username)) return false;
 
-        File dir = new File(DIR);
+        File dir = new File(DIR+PREFIX+EXT);
         if (!dir.exists()) dir.mkdirs();
 
         String hashed = BCrypt.hashpw(password, BCrypt.gensalt());

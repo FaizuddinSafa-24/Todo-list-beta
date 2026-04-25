@@ -13,7 +13,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 
-public class RegisterController implements Initializable {
+public class ForgotPasswordController implements Initializable {
 
     @FXML 
     private TextField usernameField;
@@ -42,7 +42,7 @@ public class RegisterController implements Initializable {
     }
 
     
-    public void register(ActionEvent e) throws IOException {
+    public void passReset(ActionEvent e) throws IOException {
         String username = usernameField.getText().trim();
         String password = passwordField.getText();
         String confirm = confirmField.getText();
@@ -53,24 +53,28 @@ public class RegisterController implements Initializable {
             showAlert("Error", "All fields are required.");
             return; //return must,  otherwise keep going through following if-else
         }
-        if (!password.equals(confirm)) {
-            showAlert("Error", "Passwords do not match.");
+        if (!UserManager.isUserExists(username)) {
+            showAlert("Error", "Username is not exists.");
             return; // same
         }
-        if (hint == null) {
-            showAlert("Error", "Please select a password hint.");
+        if (!hint.equals(UserManager.getPassHint(username))) {
+            showAlert("Error", " password hint does not match.");
+            return; // same
+        }
+        if(!favAnswer.equals(UserManager.getFavAnswer(username))) {
+            showAlert("Error", " favourite answer does not match.");
             return; // same
         }
 
-        boolean ok = UserManager.register(username, password, hint, favAnswer);
+        boolean ok = UserManager.resetPassword(username, password);
         if (ok) {
             Alert a = new Alert(Alert.AlertType.INFORMATION);
             a.setTitle("Success");
-            a.setContentText("Account created! Please log in.");
+            a.setContentText("Password changed! Please log in.");
             a.showAndWait();
             goLogin(e);
         } else {
-            showAlert("Error", "Username already exists or is invalid.");
+            showAlert("Error", "Could not change old password.");
         }
     }
 

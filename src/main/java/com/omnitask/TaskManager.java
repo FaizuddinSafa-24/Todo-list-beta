@@ -13,12 +13,16 @@ public class TaskManager {
 
     private static void ensureDir() {
         File d = new File(DIR);
-        if (!d.exists()) d.mkdirs();
+        if (!d.exists()) {
+            d.mkdirs();
+        }
     }
 
     // Format: title|text|dueDate|done
     public static boolean addTask(String username, String title, String text, String dueDate) throws IOException {
-        if (title == null || title.isBlank()) return false;
+        if (title == null || title.isBlank()) {
+            return false;
+        }
         ensureDir();
         try (PrintWriter pw = new PrintWriter(new FileWriter(getTaskFile(username), true))) {
             pw.println(title + "|" + text + "|" + dueDate + "|false");
@@ -29,11 +33,15 @@ public class TaskManager {
     public static List<String[]> loadTask(String username) throws IOException {
         List<String[]> tasks = new ArrayList<>();
         File f = new File(getTaskFile(username));
-        if (!f.exists()) return tasks;
+        if (!f.exists()) {
+            return tasks;
+        }
         try (BufferedReader br = new BufferedReader(new FileReader(f))) {
             String line;
             while ((line = br.readLine()) != null) {
-                if (!line.isBlank()) tasks.add(line.split("\\|", -1));
+                if (!line.isBlank()) {
+                    tasks.add(line.split("\\|", -1));
+                }
             }
         }
         return tasks;
@@ -42,7 +50,15 @@ public class TaskManager {
     private static void saveTasks(String username, List<String[]> tasks) throws IOException {
         ensureDir();
         try (PrintWriter pw = new PrintWriter(new FileWriter(getTaskFile(username), false))) {
-            for (String[] t : tasks) pw.println(String.join("|", t));
+            List<String[]> array = loadTask(username);
+            for (int i = 0; array.get(i) != null && tasks.get(i) != null; i++) {
+                if (array.get(i) == tasks.get(i)) {
+                    continue;
+                } else {
+                     
+                    pw.println(String.join("|", tasks.get(i)));
+                }
+            }
         }
     }
 
@@ -58,7 +74,7 @@ public class TaskManager {
         List<String[]> tasks = loadTask(username);
         if (index >= 0 && index < tasks.size()) {
             tasks.get(index)[3] = "true";
-            saveTasks(username, tasks);
+            saveTasks(username, tasks); // need implementation
         }
     }
 }
