@@ -24,6 +24,9 @@ import javafx.stage.Stage;
  * @author safa
  */
 public class TaskViewController implements Initializable {
+    
+    private Stage stage;
+    private Scene scene;
 
     @FXML
     private ListView<String> taskListView;
@@ -155,8 +158,9 @@ public class TaskViewController implements Initializable {
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Login.fxml"));
         Parent root = loader.load();
-        Stage stage = (Stage) titleField.getScene().getWindow();
-        stage.setScene(new Scene(root));
+        stage = (Stage) titleField.getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
         stage.show();
     }
 

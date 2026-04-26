@@ -20,6 +20,8 @@ public class LoginController {
     @FXML
     private PasswordField pass;
     //must add private Scene scene for removing redundancy
+    private Stage stage;
+    private Scene scene;
     
     /**
      *
@@ -41,8 +43,9 @@ public class LoginController {
             Parent root = loader.load();
             TaskViewController ctrl = loader.getController();
             ctrl.setUsername(username);
-            Stage stage = (Stage) signin.getScene().getWindow();
-            stage.setScene(new Scene(root));    // scene obj can be used
+            stage = (Stage) signin.getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);    
             stage.show();
         } else {
             showAlert("Login Failed", "Invalid username or password.");
@@ -57,8 +60,9 @@ public class LoginController {
     public void goForgotPassword(ActionEvent e) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/ForgotPassword.fxml"));
         Parent root = loader.load();
-        Stage stage = (Stage) signin.getScene().getWindow();
-        stage.setScene(new Scene(root));    // scene obj can be used
+        stage = (Stage) signin.getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);    // scene obj can be used
         stage.show();
     }
 
@@ -70,8 +74,9 @@ public class LoginController {
     public void goRegister(ActionEvent e) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Register.fxml"));
         Parent root = loader.load();
-        Stage stage = (Stage) signin.getScene().getWindow();
-        stage.setScene(new Scene(root));    // scene obj can be used
+        stage = (Stage) signin.getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);    // scene obj can be used
         stage.show();
     }
 

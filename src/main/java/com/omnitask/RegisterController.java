@@ -19,6 +19,9 @@ import javafx.stage.Stage;
  */
 public class RegisterController implements Initializable {
 
+    private Stage stage;
+    private Scene scene;
+    
     @FXML 
     private TextField usernameField;
     @FXML 
@@ -95,8 +98,9 @@ public class RegisterController implements Initializable {
     public void goLogin(ActionEvent e) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Login.fxml"));
         Parent root = loader.load();
-        Stage stage = (Stage) usernameField.getScene().getWindow();
-        stage.setScene(new Scene(root));
+        stage = (Stage) usernameField.getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
         stage.show();
     }
 

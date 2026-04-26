@@ -18,6 +18,8 @@ import javafx.stage.Stage;
  * @author safa
  */
 public class ForgotPasswordController implements Initializable {
+    private Stage stage;
+    private Scene scene;
 
     @FXML 
     private TextField usernameField;
@@ -100,7 +102,8 @@ public class ForgotPasswordController implements Initializable {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Login.fxml"));
         Parent root = loader.load();
         Stage stage = (Stage) usernameField.getScene().getWindow();
-        stage.setScene(new Scene(root));
+        scene = new Scene(root);
+        stage.setScene(scene);
         stage.show();
     }
 
