@@ -77,7 +77,7 @@ public class TaskViewController implements Initializable {
     private void loadTaskList() {
         taskListView.getItems().clear();
         try {
-            tasks = TaskManager.loadTask(username);
+            List<String[]>tasks = TaskManager.loadTask(username);
             for (String[] t : tasks) {
                 // Show first 4-6 words of title
                 String display = t[0].length() > 30 ? t[0].substring(0, 30) + "..." : t[0];
