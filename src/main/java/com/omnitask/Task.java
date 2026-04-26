@@ -1,3 +1,9 @@
+package com.omnitask;
+
+/**
+ *
+ * @author safa
+ */
 public interface Task {
 
 

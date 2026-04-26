@@ -1,11 +1,24 @@
+package com.omnitask;
+
+/**
+ *
+ * @author safa
+ */
 public abstract class AbstrackTask implements Task{
 
-
+    
     protected String title;
     protected String text;
     protected String dueDate;
     protected boolean done;
 
+    /**
+     *
+     * @param title
+     * @param text
+     * @param dueDate
+     * @param done
+     */
     public AbstrackTask(String title, String text, String dueDate, boolean done) {
         this.title   = title;
         this.text    = text;

@@ -77,7 +77,7 @@ public class TaskViewController implements Initializable {
     private void loadTaskList() {
         taskListView.getItems().clear();
         try {
-            tasks = TaskManag.loadTask(username);
+            List<String[]>tasks = TaskManager.loadTask(username);
             for (String[] t : tasks) {
                 // Show first 4-6 words of title
                 String display = t[0].length() > 30 ? t[0].substring(0, 30) + "..." : t[0];
@@ -112,7 +112,7 @@ public class TaskViewController implements Initializable {
             return;
         }
         try {
-            TaskManage.addTask(username, title, text, "");
+            TaskManager.addTask(username, title, text, "");
             titleField.clear();
             textArea.clear();
             selectedIndex = -1;

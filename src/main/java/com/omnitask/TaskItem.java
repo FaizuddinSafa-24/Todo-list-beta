@@ -1,6 +1,18 @@
+package com.omnitask;
+
+/**
+ *
+ * @author safa
+ */
 public class TaskItem extends AbstrackTask{
 
-
+    /**
+     *
+     * @param title
+     * @param text
+     * @param dueDate
+     * @param done
+     */
     public TaskItem(String title, String text, String dueDate, boolean done) {
         super(title, text, dueDate, done);
     }
