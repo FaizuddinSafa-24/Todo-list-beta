@@ -9,12 +9,25 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 
+/**
+ *
+ * @author safa
+ */
 public class LoginController {
 
-    @FXML private TextField signin;
-    @FXML private PasswordField pass;
-
     @FXML
+    private TextField signin;
+    @FXML
+    private PasswordField pass;
+    //must add private Scene scene for removing redundancy
+    private Stage stage;
+    private Scene scene;
+    
+    /**
+     *
+     * @param e
+     * @throws IOException
+     */
     public void login(ActionEvent e) throws IOException {
         String username = signin.getText().trim();
         String password = pass.getText();
@@ -30,29 +43,40 @@ public class LoginController {
             Parent root = loader.load();
             TaskViewController ctrl = loader.getController();
             ctrl.setUsername(username);
-            Stage stage = (Stage) signin.getScene().getWindow();
-            stage.setScene(new Scene(root));
+            stage = (Stage) signin.getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);    
             stage.show();
         } else {
             showAlert("Login Failed", "Invalid username or password.");
         }
     }
 
-    @FXML
+    /**
+     *
+     * @param e
+     * @throws IOException
+     */
     public void goForgotPassword(ActionEvent e) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/ForgotPassword.fxml"));
         Parent root = loader.load();
-        Stage stage = (Stage) signin.getScene().getWindow();
-        stage.setScene(new Scene(root));
+        stage = (Stage) signin.getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);    // scene obj can be used
         stage.show();
     }
 
-    @FXML
+    /**
+     *
+     * @param e
+     * @throws IOException
+     */
     public void goRegister(ActionEvent e) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Register.fxml"));
         Parent root = loader.load();
-        Stage stage = (Stage) signin.getScene().getWindow();
-        stage.setScene(new Scene(root));
+        stage = (Stage) signin.getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);    // scene obj can be used
         stage.show();
     }
 
