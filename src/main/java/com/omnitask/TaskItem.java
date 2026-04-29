@@ -17,6 +17,22 @@ public class TaskItem extends AbstrackTask{
         super(title, text, dueDate, done);
     }
 
+    public String getTitle() {
+        return title;
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public String getDueDate() {
+        return dueDate;
+    }
+
+    public boolean isDone() {
+        return done;
+    }
+
     // Parse one line from the file into a TaskItem
     public static TaskItem fromFileLine(String line) {
         String[] parts = line.split("\\|", -1);
