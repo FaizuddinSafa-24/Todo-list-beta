@@ -16,11 +16,21 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Alert;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
-import javafx.scene.layout.*;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+
 
 public class TaskViewController implements Initializable {
 
@@ -170,7 +180,8 @@ public class TaskViewController implements Initializable {
             return;
         }
         try {
-            Taskmanager.updateTask(username, title, text, date,);
+            //String username, String title, String text, String dueDate, String type
+            Taskmanager.updateTask(username, title, text);
             titleField.clear();
             textArea.clear();
             selectedIndex = -1;
@@ -182,12 +193,13 @@ public class TaskViewController implements Initializable {
 
     @FXML
     public void deleteTask(ActionEvent e) {
+        String title = titleField.getText();
         if (selectedIndex < 0) {
             showAlert("Error", "Select a task to delete.");
             return;
         }
         try {
-            Taskmanager.deleteTask(username, selectedIndex);
+            Taskmanager.deleteTask(username,title);
             titleField.clear();
             textArea.clear();
             selectedIndex = -1;

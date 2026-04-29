@@ -1,5 +1,13 @@
 package com.omnitask;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.*;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+
   
 
     public class Taskmanager {
@@ -87,7 +95,7 @@ package com.omnitask;
             }
         }
 
-        public static void updateTask(String username, String title, String text, String dueDate, String type) throws IOException {
+        public static void updateTask(String username, String title, String text) throws IOException {
             //List<String[]> taskFiles = loadTask(username);
             try (BufferedReader br = new BufferedReader(new FileReader(getTaskFile(username, title)))) {
                 String line;
@@ -100,21 +108,21 @@ package com.omnitask;
         }
 
         //addTask(username, title, text, dueDate, type);
+        public static void markDone(String username, String title,
+                boolean done) throws IOException {
+            File f = new File(getTaskFile(username, title));
+            if (!f.exists()) {
+                return;
+            }
+            String[] task = parseTaskFile(f);
+            try (PrintWriter pw = new PrintWriter(new FileWriter(f, false))) {
+                pw.println("title=" + task[0]);
+                pw.println("text=" + task[1]);
+                pw.println("due=" + task[2]);
+                pw.println("type=" + task[4]);
+                pw.println("done=" + done);
+            }
+        }
     }
 
-    public static void markDone(String username, String title,
-            boolean done) throws IOException {
-        File f = new File(getTaskFile(username, title));
-        if (!f.exists()) {
-            return;
-        }
-        String[] task = parseTaskFile(f);
-        try (PrintWriter pw = new PrintWriter(new FileWriter(f, false))) {
-            pw.println("title=" + task[0]);
-            pw.println("text=" + task[1]);
-            pw.println("due=" + task[2]);
-            pw.println("type=" + task[4]);
-            pw.println("done=" + done);
-        }
-    }
-}
+
