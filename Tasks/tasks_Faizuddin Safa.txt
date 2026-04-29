@@ -6,3 +6,7 @@ Semester Break Tour.|Mission Impossible. No way to NSU! No more mids, quizzes! I
 Welcome|Morning everyone!||false
 Welcome|Morning everyone! Hey, how are you all?||false
 Go to Library|Need to look for books.||false
+Lab Project Status|||false
+Lab Project Status|||false
+Lab Project Status|||false
+Left To Implement|||false
