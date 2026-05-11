@@ -1,7 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
 
 <BorderPane xmlns="http://javafx.com/javafx/21"
             xmlns:fx="http://javafx.com/fxml/1"
@@ -10,37 +19,59 @@
 
     <!-- LEFT: Task list -->
     <left>
-        <VBox spacing="8" style="-fx-padding:10;" prefWidth="200">
-            <Label text="My Tasks" style="-fx-font-size:16;-fx-font-weight:bold;"/>
-            <ListView fx:id="taskListView" prefHeight="450" onMouseClicked="#onTaskSelected"/>
+        <VBox prefWidth="200" spacing="8" style="-fx-padding:10;">
+            <Label style="-fx-font-size:16;-fx-font-weight:bold;" text="My Tasks" />
+            <ListView fx:id="taskListView" onMouseClicked="#onTaskSelected" prefHeight="450" />
         </VBox>
     </left>
 
-    <!-- CENTER: Title + Text area -->
+    <!-- CENTER: Title + swap zone -->
     <center>
-        <VBox spacing="10" style="-fx-padding:15;" prefWidth="360">
-            <Label text="Task Title"/>
-            <TextField fx:id="titleField" promptText="Enter task title..."/>
-            <Label text="Task Details"/>
-            <TextArea fx:id="textArea" promptText="Enter task details..." prefHeight="300" wrapText="true"/>
+        <VBox fx:id="centerContent" prefWidth="360" spacing="10" style="-fx-padding:15;">
+            <Label text="Task Title" />
+            <TextField fx:id="titleField" promptText="Enter task title..." />
+         <DatePicker fx:id="date" promptText="Due Date" />
+            <Label text="Task Details" />
+
+            <!-- swap zone: TextArea vs Checklist -->
+            <StackPane fx:id="swapZone" VBox.vgrow="ALWAYS">
+                <TextArea fx:id="textArea" managed="true" prefHeight="300" promptText="Enter task details..." visible="true" wrapText="true" />
+                <VBox fx:id="checklistContainer" managed="false" spacing="8" visible="false" StackPane.alignment="TOP_LEFT">
+                    <padding>
+                        <Insets top="5.0" />
+                    </padding>
+                </VBox>
+            </StackPane>
         </VBox>
     </center>
 
-    <!-- RIGHT: Buttons -->
+    <!-- RIGHT: Buttons + popup -->
     <right>
-        <VBox spacing="12" style="-fx-padding:15;" prefWidth="160" alignment="TOP_CENTER">
-            <Button text="Save Task" onAction="#saveTask" prefWidth="140"/>
-            <Button text="Delete Task" onAction="#deleteTask" prefWidth="140"/>
-            <Button text="Logout" onAction="#logout" prefWidth="140"/>
-        </VBox>
+        <StackPane>
+            <VBox alignment="TOP_CENTER" prefWidth="160" spacing="12" style="-fx-padding:15;">
+                <Button onAction="#showPopup" prefWidth="140" text="New Task" />
+                <Button onAction="#deleteTask" prefWidth="140" text="Delete Task" />
+                <Button onAction="#saveTask" prefWidth="140" text="Save Task" />
+                <Button onAction="#logout" prefWidth="140" text="Logout" />
+            </VBox>
+
+            <!-- popup overlay -->
+            <VBox fx:id="popup" alignment="CENTER" managed="false" maxHeight="110" maxWidth="150" spacing="10" style="-fx-background-color:#2a2a2a; -fx-padding:12; -fx-background-radius:8;" visible="false" StackPane.alignment="TOP_LEFT">
+                <StackPane.margin>
+                    <Insets bottom="0.0" left="5.0" right="0.0" top="50.0" />
+                </StackPane.margin>
+                <Label style="-fx-text-fill:white;" text="Choose type" />
+                <Button onAction="#openTextNote" prefWidth="120" text="Text Note" />
+                <Button onAction="#openCheckList" prefWidth="120" text="Checklist" />
+            </VBox>
+        </StackPane>
     </right>
 
     <!-- BOTTOM: Username + Clock -->
     <bottom>
         <HBox spacing="20" style="-fx-padding:8;-fx-border-color:#cccccc;-fx-border-width:1 0 0 0;">
-            <Label fx:id="usernameLabel" text="User: "/>
-            <Label fx:id="clockLabel" text="00:00:00"/>
+            <Label fx:id="usernameLabel" text="User: " />
+            <Label fx:id="clockLabel" text="00:00:00" />
         </HBox>
     </bottom>
-
 </BorderPane>

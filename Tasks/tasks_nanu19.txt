@@ -1,0 +1,12 @@
+say goodbye!||false|false
+hf|||false
+Welcome to Vanilla!|did something suspicious!||false
+Welcome to Vanilla!|did something suspicious!
+dfgdf
+dsfd||false
+Task Must Be done|1. Email to Iftekhar for task bug.
+2. Email to Tanjim for UserMnager OOP implement.||false
+Debug|1. need to fix task multiple saving.
+Note: One thing can be considered. How about saving each task in seperate txt file instead of one txt for each person. we can create a person folder inside Tasks folder where all the tasks with .txt will be there.||false
+Note: One thing can be considered. How about saving each task in seperate txt file instead of one txt for each person. we can create a person folder inside Tasks folder where all the tasks with .txt will be there.|||false
+Note: One thing can be considered. How about saving each task in seperate txt file instead of one txt for each person. we can create a person folder inside Tasks folder where all the tasks with .txt will be there.|repeatition occurs!||false
