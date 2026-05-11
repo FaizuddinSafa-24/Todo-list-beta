@@ -1,5 +1,6 @@
-package com.omnitask;
+package com.omnitask.controller;
 
+import com.omnitask.user.UserManager;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -17,10 +18,11 @@ import javafx.stage.Stage;
  *
  * @author safa
  */
-public class ForgotPasswordController implements Initializable {
+public class RegisterController implements Initializable {
+
     private Stage stage;
     private Scene scene;
-
+    
     @FXML 
     private TextField usernameField;
     @FXML 
@@ -57,7 +59,7 @@ public class ForgotPasswordController implements Initializable {
      * @param e
      * @throws IOException
      */
-    public void passReset(ActionEvent e) throws IOException {
+    public void register(ActionEvent e) throws IOException {
         String username = usernameField.getText().trim();
         String password = passwordField.getText();
         String confirm = confirmField.getText();
@@ -68,28 +70,24 @@ public class ForgotPasswordController implements Initializable {
             showAlert("Error", "All fields are required.");
             return; //return must,  otherwise keep going through following if-else
         }
-        if (!UserManager.isUserExists(username)) {
-            showAlert("Error", "Username is not exists.");
+        if (!password.equals(confirm)) {
+            showAlert("Error", "Passwords do not match.");
             return; // same
         }
-        if (!hint.equals(UserManager.getPassHint(username))) {
-            showAlert("Error", " password hint does not match.");
-            return; // same
-        }
-        if(!favAnswer.equals(UserManager.getFavAnswer(username))) {
-            showAlert("Error", " favourite answer does not match.");
+        if (hint == null) {
+            showAlert("Error", "Please select a password hint.");
             return; // same
         }
 
-        boolean ok = UserManager.resetPassword(username, password);
+        boolean ok = UserManager.register(username, password, hint, favAnswer);
         if (ok) {
             Alert a = new Alert(Alert.AlertType.INFORMATION);
             a.setTitle("Success");
-            a.setContentText("Password changed! Please log in.");
+            a.setContentText("Account created! Please log in.");
             a.showAndWait();
             goLogin(e);
         } else {
-            showAlert("Error", "Could not change old password.");
+            showAlert("Error", "Username already exists or is invalid.");
         }
     }
 
@@ -101,7 +99,7 @@ public class ForgotPasswordController implements Initializable {
     public void goLogin(ActionEvent e) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Login.fxml"));
         Parent root = loader.load();
-        Stage stage = (Stage) usernameField.getScene().getWindow();
+        stage = (Stage) usernameField.getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();

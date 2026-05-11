@@ -1,5 +1,6 @@
-package com.omnitask;
+package com.omnitask.controller;
 
+import com.omnitask.task.TaskManager;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalTime;

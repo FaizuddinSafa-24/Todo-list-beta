@@ -1,4 +1,6 @@
-package com.omnitask;
+package com.omnitask.task;
+import com.omnitask.task.TaskItem;
+import com.omnitask.task.Task;
 import java.io.*;
 import java.util.*;
 

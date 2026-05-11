@@ -1,9 +1,8 @@
-package com.omnitask;
+package com.omnitask.task;
 
-/**
- *
- * @author safa
- */
+import com.omnitask.task.AbstrackTask;
+
+
 public class TaskItem extends AbstrackTask{
 
     /**
