@@ -12,7 +12,10 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane prefHeight="550" prefWidth="800" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.omnitask.TaskViewController">
+<BorderPane xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.omnitask.controller.TaskViewController"
+            prefWidth="800" prefHeight="550">
 
     <!-- LEFT: Task list -->
     <left>

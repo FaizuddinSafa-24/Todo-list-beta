@@ -5,7 +5,7 @@
 
 <VBox alignment="CENTER" spacing="12" xmlns="http://javafx.com/javafx/21"
       xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="com.omnitask.LoginController"
+      fx:controller="com.omnitask.controller.LoginController"
       prefWidth="360" prefHeight="400">
 
     <Label text="OmniTask Login" style="-fx-font-size:22;-fx-font-weight:bold;"/>
