@@ -1,44 +1,70 @@
-# OmniTask
+---
 
-A desktop todo-list app built with Java + JavaFX. Stores tasks per user. No database, no server, no nonsense.
+# OmniTask — JavaFX Desktop Todo App
+
+A clean, file-based desktop todo-list application built with **Java 25 + JavaFX 26**. User authentication with BCrypt, per-user task management, zero external dependencies at runtime.
+
+> No database. No server. No bloat. Just Java.
 
 ---
 
-## What it does
+## ✨ Features
 
-- Register / Login with BCrypt-hashed passwords
-- Password hint recovery system
-- Create, view, and delete tasks per user
-- Live clock. Data persists in flat files.
+- **User Auth** — Register, login, password recovery via hint system
+- **BCrypt Hashing** — Passwords never stored in plain text
+- **Per-User Tasks** — Each user gets their own task list
+- **Task CRUD** — Create, view, delete tasks with due dates
+- **Live Clock** — Real-time clock on the task dashboard
+- **File-Based Storage** — Everything persists in flat files, no DB setup needed
+- **Clean OOP Architecture** — Abstract base classes, separation of concerns
 
-## Stack
+---
 
-- Java 25, JavaFX 26, Maven
-- BCrypt via `jbcrypt`
-- File-based storage (no SQLite yet — it's coming)
+## 🛠 Tech Stack
 
-## Run it
+| Tech | Version |
+|------|---------|
+| Java | 25 |
+| JavaFX | 26 |
+| Maven | 25 |
+| jbcrypt | 0.4 |
+
+---
+
+## 🚀 Quick Start
 
 ```bash
 git clone https://github.com/FaizuddinSafa-24/Todo-list-beta
-cd todo-list-beta
+cd Todo-list-beta
 mvn clean javafx:run
 ```
 
-Requires JDK 25+ and JavaFX 26 on your machine.
+**Requirements:** JDK 25+, JavaFX 26 SDK
 
-## Structure
+---
+
+## 📁 Project Structure
 
 ```
 src/main/
 ├── java/com/omnitask/
-│   ├── App.java
-│   ├── UserManager.java       # auth + file I/O
-│   ├── TaskManager.java       # task CRUD
-│   ├── LoginController.java
-│   ├── RegisterController.java
-│   ├── TaskViewController.java
-│   └── ForgotPasswordController.java
+│   ├── App.java                          # Entry point
+│   ├── user/                             # Authentication module
+│   │   ├── AbstractUser.java             # Base user model
+│   │   ├── User.java                     # Concrete user
+│   │   ├── UserItem.java                 # JavaFX list item wrapper
+│   │   └── UserManager.java              # Auth logic, BCrypt, file I/O
+│   ├── task/                             # Task management module
+│   │   ├── AbstractTask.java             # Base task model
+│   │   ├── Task.java                     # Concrete task
+│   │   ├── TaskItem.java                 # JavaFX list item wrapper
+│   │   └── TaskManager.java              # Task CRUD + file persistence
+│   ├── controller/                       # JavaFX controllers
+│   │   ├── LoginController.java
+│   │   ├── RegisterController.java
+│   │   ├── TaskViewController.java
+│   │   └── ForgotPasswordController.java
+│   └── module-info.java
 └── resources/fxml/
     ├── Login.fxml
     ├── Register.fxml
@@ -46,18 +72,42 @@ src/main/
     └── ForgotPassword.fxml
 ```
 
-## Data storage
+**Architecture:** Abstract → Concrete → Item wrapper → Manager. `user/` owns auth. `task/` owns task logic. `controller/` owns UI. Clean separation.
+
+---
+
+## 💾 Data Format
 
 ```
-Login/tasks_<username>.txt     → username|hashedPass|hint|favAnswer
-Tasks/tasks_<username>.txt     → title|text|dueDate|done
+Login/users_<username>.txt    → username|hashedPass|hint|favAnswer
+Tasks/tasks_<username>.txt    → title|text|dueDate|done
 ```
 
-## Status
+---
 
-Work in progress. Built for learning JavaFX OOP architecture — not production.  
-PRs and forks welcome if you want to add SQLite, themes, or due-date sorting.
+## 🗺 Roadmap
 
-## License
+- [ ] SQLite migration (replace flat files)
+- [ ] Due-date sorting
+- [ ] Task edit / update
+- [ ] Dark mode theme
+- [ ] Unit tests
+
+---
+
+## 🤝 Contributing
+
+This project was built to learn JavaFX OOP patterns. It's not production-ready.
+Fork it, break it, improve it. PRs welcome — especially for the roadmap items above.
+
+---
+
+## 📄 License
 
 MIT
+
+---
+
+## ⭐ Star this repo if it helped you learn JavaFX
+
+---
