@@ -1,37 +1,20 @@
----
+# OmniTask
 
-# OmniTask — JavaFX Desktop Todo App
-
-A clean, file-based desktop todo-list application built with **Java 25 + JavaFX 26**. User authentication with BCrypt, per-user task management, zero external dependencies at runtime.
-
-> No database. No server. No bloat. Just Java.
+A desktop todo-list app. Java 25 + JavaFX 26. File-based storage. No database.
 
 ---
 
-## ✨ Features
+## What's inside
 
-- **User Auth** — Register, login, password recovery via hint system
-- **BCrypt Hashing** — Passwords never stored in plain text
-- **Per-User Tasks** — Each user gets their own task list
-- **Task CRUD** — Create, view, delete tasks with due dates
-- **Live Clock** — Real-time clock on the task dashboard
-- **File-Based Storage** — Everything persists in flat files, no DB setup needed
-- **Clean OOP Architecture** — Abstract base classes, separation of concerns
+- Register / Login with BCrypt-hashed passwords
+- Password hint recovery
+- Create, view, delete tasks per user
+- Live clock on the dashboard
+- Data persists in flat files
 
 ---
 
-## 🛠 Tech Stack
-
-| Tech | Version |
-|------|---------|
-| Java | 25 |
-| JavaFX | 26 |
-| Maven | 25 |
-| jbcrypt | 0.4 |
-
----
-
-## 🚀 Quick Start
+## Run it
 
 ```bash
 git clone https://github.com/FaizuddinSafa-24/Todo-list-beta
@@ -39,75 +22,60 @@ cd Todo-list-beta
 mvn clean javafx:run
 ```
 
-**Requirements:** JDK 25+, JavaFX 26 SDK
+Needs JDK 25+ and JavaFX 26.
 
 ---
 
-## 📁 Project Structure
+## Structure
 
 ```
-src/main/
-├── java/com/omnitask/
-│   ├── App.java                          # Entry point
-│   ├── user/                             # Authentication module
-│   │   ├── AbstractUser.java             # Base user model
-│   │   ├── User.java                     # Concrete user
-│   │   ├── UserItem.java                 # JavaFX list item wrapper
-│   │   └── UserManager.java              # Auth logic, BCrypt, file I/O
-│   ├── task/                             # Task management module
-│   │   ├── AbstractTask.java             # Base task model
-│   │   ├── Task.java                     # Concrete task
-│   │   ├── TaskItem.java                 # JavaFX list item wrapper
-│   │   └── TaskManager.java              # Task CRUD + file persistence
-│   ├── controller/                       # JavaFX controllers
-│   │   ├── LoginController.java
-│   │   ├── RegisterController.java
-│   │   ├── TaskViewController.java
-│   │   └── ForgotPasswordController.java
-│   └── module-info.java
-└── resources/fxml/
-    ├── Login.fxml
-    ├── Register.fxml
-    ├── TaskView.fxml
-    └── ForgotPassword.fxml
+src/main/java/com/omnitask/
+├── App.java
+├── user/
+│   ├── AbstractUser.java
+│   ├── User.java
+│   ├── UserItem.java
+│   └── UserManager.java
+├── task/
+│   ├── AbstrackTask.java
+│   ├── Task.java
+│   ├── TaskItem.java
+│   └── TaskManager.java
+├── controller/
+│   ├── LoginController.java
+│   ├── RegisterController.java
+│   ├── TaskViewController.java
+│   └── ForgotPasswordController.java
+└── module-info.java
+
+src/main/resources/fxml/
+├── Login.fxml
+├── Register.fxml
+├── TaskView.fxml
+└── ForgotPassword.fxml
 ```
 
-**Architecture:** Abstract → Concrete → Item wrapper → Manager. `user/` owns auth. `task/` owns task logic. `controller/` owns UI. Clean separation.
+`user/` handles auth. `task/` handles task CRUD. `controller/` handles UI. Abstract base classes with concrete implementations and JavaFX item wrappers.
 
 ---
 
-## 💾 Data Format
+## Data
 
 ```
-Login/users_<username>.txt    → username|hashedPass|hint|favAnswer
-Tasks/tasks_<username>.txt    → title|text|dueDate|done
+Login/users_<username>.txt  → username|hashedPass|hint|favAnswer
+Tasks/tasks_<username>.txt  → title|text|dueDate|done
 ```
 
 ---
 
-## 🗺 Roadmap
+## Status
 
-- [ ] SQLite migration (replace flat files)
-- [ ] Due-date sorting
-- [ ] Task edit / update
-- [ ] Dark mode theme
-- [ ] Unit tests
+Learning project. Not production-ready. Built to practice JavaFX OOP patterns.
+
+Fork it if you want. SQLite, dark mode, due-date sorting — all fair game.
 
 ---
 
-## 🤝 Contributing
-
-This project was built to learn JavaFX OOP patterns. It's not production-ready.
-Fork it, break it, improve it. PRs welcome — especially for the roadmap items above.
-
----
-
-## 📄 License
+## License
 
 MIT
-
----
-
-## ⭐ Star this repo if it helped you learn JavaFX
-
----
